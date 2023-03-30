@@ -10,3 +10,10 @@
 10. Condition (if-else)
 11. Keccak256 Hash Function
 12. Event
+13. Mapping
+14. Data locations
+15. Error
+16. Interface
+17. Inheritance
+18. Multiple inheritence
+19. Library
