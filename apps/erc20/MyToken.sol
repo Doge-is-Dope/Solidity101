@@ -10,13 +10,13 @@ contract MyToken is IERC20 {
     mapping(address => mapping(address => uint256)) public allowance; // owner -> sender(spender) -> amount
 
     string public name = "My Token"; // name of the token
-    string public symobl = "MTK"; // symbol of the token
+    string public symbol = "MTK"; // symbol of the token
     uint8 public decimals; // decimals of the token
     address public owner; // the owner of the contract
 
     constructor() {
         name = "My Token";
-        symobl = "MTK";
+        symbol = "MTK";
         decimals = 18;
         owner = msg.sender;
     }
