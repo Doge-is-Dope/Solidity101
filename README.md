@@ -15,5 +15,7 @@
 15. Error
 16. Interface
 17. Inheritance
-18. Multiple inheritence
+18. Multiple Inheritence
 19. Library
+20. View & Pure Functions
+21. Function Modifier
