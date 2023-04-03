@@ -19,3 +19,9 @@
 19. Library
 20. View & Pure Functions
 21. Function Modifier
+22. Visibility
+23. Immutable
+24. Deleting Contract
+25. Ownable
+26. Access Control
+27. Loops (For & While)
