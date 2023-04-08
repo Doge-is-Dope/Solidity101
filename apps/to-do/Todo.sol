@@ -4,11 +4,13 @@ pragma solidity ^0.8.19;
 import "./Ownable.sol";
 
 contract Todo is Ownable {
+    // a struct of Task
     struct Task {
         string name;
         bool completed;
     }
 
+    // map of owner to tasks
     mapping(address => Task[]) listOf;
 
     /// @notice Create a task and add it to the list
@@ -19,9 +21,10 @@ contract Todo is Ownable {
 
     // @notice Update a task's completeness
     function update(uint256 _index) external {
-        // Get the task by index
-        Task memory task = listOf[msg.sender][_index];
-        listOf[msg.sender][_index].completed = !task.completed;
+        // Get the task by index as reference
+        Task storage task = listOf[msg.sender][_index];
+        // toggle 'completed'
+        task.completed = !task.completed;
     }
 
     // @notice Retrieve a task by specified index
