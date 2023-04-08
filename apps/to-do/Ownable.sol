@@ -1,11 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-/// @title example of a prod app to check the ownership of a contract using following features
-/// - state variables
-/// - function modifier
-/// - function
-/// - error handling
+/// @title Ownable control
 contract Ownable {
     address public owner;
 
@@ -25,10 +21,4 @@ contract Ownable {
         require(_newOwner != address(0x0), "invalid address");
         owner = _newOwner;
     }
-
-    /// @dev only the owner can call this function
-    function onlyOwnerCanCallThisFunc() external onlyOwner {}
-
-    /// @dev anyone can call this function
-    function anyoneCanCallThisFunc() external {}
 }
