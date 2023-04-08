@@ -19,16 +19,15 @@ contract Todo is Ownable {
 
     // @notice Update a task's completeness
     function update(uint256 _index) external {
-        // Get the caller's list
-        Task[] storage todoList = listOf[msg.sender];
-        // Update the task by index
-        todoList[_index].completed = !todoList[_index].completed;
+        // Get the task by index
+        Task memory task = listOf[msg.sender][_index];
+        listOf[msg.sender][_index].completed = !task.completed;
     }
 
     // @notice Retrieve a task by specified index
-    function get(uint256 _index) external view returns (Task memory task) {
+    function get(uint256 _index) external view returns (Task memory) {
         // Get the list by caller, and get the task by index
-        task = listOf[msg.sender][_index];
+        return listOf[msg.sender][_index];
     }
 
     // @notice Detroy the contract
