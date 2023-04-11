@@ -1,3 +1,4 @@
+### Basics
 1. State Variables
 2. Local Variables
 3. Global Variables
@@ -25,3 +26,7 @@
 25. Ownable
 26. Access Control
 27. Loops (For & While)
+### App
+- ERC-20
+- Access Control
+- To-do
