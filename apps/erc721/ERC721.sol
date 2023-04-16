@@ -2,12 +2,23 @@
 pragma solidity ^0.8.19;
 
 import "./IERC721.sol";
+import "./IERC721Metadata.sol";
+import "./IERC721Enumerable.sol";
 import "./IERC721Receiver.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract ERC721 is IERC721 {
+contract ERC721 is IERC721, IERC721Metadata {
+    using Strings for uint256;
+
     event Transfer(address indexed from, address indexed to, uint256 indexed id);
     event Approval(address indexed owner, address indexed spender, uint256 indexed id);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+
+    // Token name
+    string private _name;
+
+    // Token symbol
+    string private _symbol;
 
     // Mapping from the token id to owner address
     mapping(uint256 => address) internal _ownerOf;
@@ -20,6 +31,41 @@ contract ERC721 is IERC721 {
 
     // Mapping from owner to operator approvals
     mapping(address => mapping(address => bool)) public isApprovedForAll;
+
+    // Mapping from owner to owner's tokens
+    mapping(address => uint256[]) private _holderTokens;
+
+    /**
+     * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
+     */
+    constructor(string memory name_, string memory symbol_) {
+        _name = name_;
+        _symbol = symbol_;
+    }
+
+    /**
+     * @dev See {IERC721Metadata-name}.
+     */
+    function name() public view returns (string memory) {
+        return _name;
+    }
+
+    /**
+     * @dev See {IERC721Metadata-symbol}.
+     */
+    function symbol() public view returns (string memory) {
+        return _symbol;
+    }
+
+    /**
+     * @dev See {IERC721Metadata-tokenURI}.
+     */
+    function tokenURI(uint256 tokenId) public view virtual returns (string memory) {
+        // Check if token exists
+        require(_ownerOf[tokenId] != address(0), "token doesn't exist");
+        string memory baseURI = "https://ipfs.io/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/";
+        return string(abi.encodePacked(baseURI, tokenId.toString()));
+    }
 
     // Implementation of IERC165
     function supportsInterface(bytes4 interfaceId) external pure returns (bool) {
@@ -174,17 +220,5 @@ contract ERC721 is IERC721 {
         delete _approvals[tokenId];
 
         emit Transfer(owner, address(0), tokenId);
-    }
-}
-
-contract MyNFT is ERC721 {
-    function mint(address to, uint256 tokenId) external {
-        _mint(to, tokenId);
-    }
-
-    function burn(uint256 tokenId) external {
-        // only the owner can burn a token
-        require(msg.sender == _ownerOf[tokenId], "not owner");
-        _burn(tokenId);
     }
 }
