@@ -4,10 +4,8 @@ pragma solidity ^0.8.19;
 import "./ERC721.sol";
 import "./IERC721Metadata.sol";
 import "./IERC721Enumerable.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract FakeBayc is ERC721 {
-    using Strings for uint256;
 
     constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {}
 
@@ -28,6 +26,6 @@ contract FakeBayc is ERC721 {
         // Check if token exists
         require(_ownerOf[tokenId] != address(0), "token doesn't exist");
         string memory baseURI = "https://ipfs.io/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/";
-        return string(abi.encodePacked(baseURI, tokenId.toString()));
+        return string(abi.encodePacked(baseURI, tokenId));
     }
 }
