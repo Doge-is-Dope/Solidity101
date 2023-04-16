@@ -5,10 +5,8 @@ import "./IERC721.sol";
 import "./IERC721Metadata.sol";
 import "./IERC721Enumerable.sol";
 import "./IERC721Receiver.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract ERC721 is IERC721, IERC721Metadata {
-    using Strings for uint256;
 
     event Transfer(address indexed from, address indexed to, uint256 indexed id);
     event Approval(address indexed owner, address indexed spender, uint256 indexed id);
@@ -63,8 +61,8 @@ contract ERC721 is IERC721, IERC721Metadata {
     function tokenURI(uint256 tokenId) public view virtual returns (string memory) {
         // Check if token exists
         require(_ownerOf[tokenId] != address(0), "token doesn't exist");
-        string memory baseURI = "https://ipfs.io/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/";
-        return string(abi.encodePacked(baseURI, tokenId.toString()));
+        // not implemented
+        return string(abi.encodePacked(tokenId));
     }
 
     // Implementation of IERC165
