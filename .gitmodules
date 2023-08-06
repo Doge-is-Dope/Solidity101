@@ -1,3 +1,6 @@
 [submodule "apps/SimpleSwap/lib/forge-std"]
 	path = apps/SimpleSwap/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "apps/create2/lib/forge-std"]
+	path = apps/create2/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
